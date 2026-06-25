@@ -7,13 +7,12 @@ int largestRowColMatch(int **arr , int n){
         for(int j = 0 ; j < n ; j++){
             int count = 0;
             for(int k = 0 ; k < n ; k++){
-                printf("%d %d\n",arr[i][k],arr[k][j]);
                 if(arr[i][k] == arr[k][j])
                     count++;
                 else
                     break;
             }
-            if(count > maxVal)  count = maxVal;
+            if(count > maxVal)  maxVal = count;
         }
     }
     return maxVal;
