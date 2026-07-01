@@ -1,9 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
+
 struct Node{
     int data;
     struct Node *next;
 };
+
 typedef struct Node Node;
 
 Node *head = NULL;
@@ -28,7 +30,7 @@ void insert(Node *newNode){
         head = newNode;
     else{
         Node *temp = head;
-        while(temp.next != NULL)
+        while(temp->next != NULL)
             temp = temp->next;
         temp->next = newNode;
     }
@@ -36,14 +38,15 @@ void insert(Node *newNode){
 
 void insertAfterEven(int even){
     Node *temp = head;
-    while(temp != NULL ){
-        if(temp->next != NULL && temp->data % 2 == 0){
+    while(temp != NULL){
+        if(temp->data % 2 == 0){
             Node *dummy = createNode(even);
             dummy->next = temp->next;
             temp->next = dummy;
+            temp = dummy->next;
         }
-        if(temp->next == NULL && temp->data % 2 == 0){
-            temp->next = createNode(even);
+        else{
+            temp = temp->next;
         }
     }
 }
