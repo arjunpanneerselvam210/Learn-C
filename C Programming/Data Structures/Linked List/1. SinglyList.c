@@ -176,6 +176,15 @@ void reverse(){
     head = prev;
 }
 
+void sort(){
+    Node *temp = head , *res = NULL , *dummy = head;
+    while(1){
+        while(temp->next != NULL){
+            if(temp->val < dummy->val)
+        }
+    }
+}
+
 int main(){
     while(1){
         int data;
