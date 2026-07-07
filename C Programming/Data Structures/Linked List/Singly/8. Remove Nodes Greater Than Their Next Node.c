@@ -37,38 +37,14 @@ void insert(Node *newNode){
 }
 
 
-void moveOddValuesToEnd(){
+void RemoveGreaterNodes(){
     if(!head || !head->next)    return;
-    Node *odd = NULL , *even = NULL , *temp = head , *evenTail = NULL , *oddTail = NULL;
-    while(temp != NULL){
-        Node *nextNode = q;
-        temp->next = NULL;
-        if(temp->data % 2 == 0){
-            if(!even){
-                even = evenTail = temp;
-            }
-            else{
-                evenTail->next = temp;
-                evenTail = temp;
-            }
+    Node *curr = head , *prev = NULL;
+    while(curr != NULL){
+        if(curr->data > curr->next->data){
+            Node *del = curr;
+            prev->next = curr->next;
         }
-        else{
-            if(!odd){
-                odd = oddTail = temp;
-            }
-             else{
-                oddTail->next = temp;
-                oddTail = temp;
-            }
-        }
-        temp = nextNode;
-    }
-    if(!even){
-        head = odd;
-    }
-    else{
-        evenTail->next = odd;   
-        head = even;
     }
 }
 
@@ -80,7 +56,7 @@ int main(){
             break;
         insert(createNode(data));
     }
-    moveOddValuesToEnd();
+    swapAdjacentElements();
     display();
     return 0;
 } 
