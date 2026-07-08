@@ -3,21 +3,25 @@ int main(){
     char *s = NULL;
     size_t size = 0;
     getline(&s , &size , stdin);
-    char stack[100];
-    int top = -1;
+    char *stack[100];
+    int flag = 0 , top = -1;
     for(int i = 0 ; s[i] != '\0' && s[i] != '\n' ; i++){
-        if(top == -1 || s[i] != stack[top])
-            stack[++top] = s[i];
-        else if(stack[top] == s[i])
-            top--;
+        if(s[i] != ' ' && flag == 0){
+            stack[++top] = &s[i];
+            flag = 1;
+        }
+        else if(s[i] == ' ')
+            flag = 0;
     }
-    if(top == -1){
-        printf("EMPTY");
-        return 0;
-    }
-    int i = 0;
-    while(i <= top){
-        printf("%c",stack[i++]);
+    while(top >= 0){
+        char *temp = stack[top];
+        while(*temp != ' ' && *temp != '\n' && *temp != '\0'){
+            printf("%c",*temp);
+            temp++;
+        }
+        if(top > 0)
+            printf(" ");
+        top--;
     }
     return 0;
 }
